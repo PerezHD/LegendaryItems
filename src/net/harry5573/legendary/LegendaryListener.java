@@ -25,6 +25,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
@@ -87,6 +88,40 @@ public class LegendaryListener implements Listener {
 
                     plugin.winItem(e.getPlayer(), newBlock.getLocation());
                 }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOW)
+    public void onBreak(BlockBreakEvent e) {
+
+        if (e.getBlock() == null) {
+            return;
+        }
+
+
+        for (String str : plugin.getConfig().getStringList("ItemCoords")) {
+            Location l = null;
+            String[] spawnfinal3 = str.split(",");
+            if (spawnfinal3.length == 3) {
+                Double x = Double.valueOf(Integer.parseInt(spawnfinal3[0]));
+                Double y = Double.valueOf(Integer.parseInt(spawnfinal3[1]));
+                Double z = Double.valueOf(Integer.parseInt(spawnfinal3[2]));
+                l = new Location(Bukkit.getWorld(plugin.getConfig().getString("WorldToDrop")), x, y, z);
+            }
+
+            Block configblock = Bukkit.getWorld(plugin.getConfig().getString("WorldToDrop")).getBlockAt(l);
+
+            Block newBlock = e.getBlock();
+
+            if (configblock.toString().equals(newBlock.toString())) {
+                List<String> ex = plugin.getConfig().getStringList("ItemCoords");
+                ex.remove(str);
+
+                plugin.getConfig().set("ItemCoords", ex);
+                plugin.saveConfig();
+
+                plugin.winItem(e.getPlayer(), newBlock.getLocation());
             }
         }
     }
