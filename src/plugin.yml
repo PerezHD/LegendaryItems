@@ -1,0 +1,9 @@
+name: LegendaryItems
+description: Legendary item generator for bukkit
+version: 1.0-vDEV
+website: www.harry5573.co.uk
+main: net.harry5573.legendary.LegendaryItem 
+authors: [Harry5573]
+commands:
+  legendary:
+    description: Main legendary command!

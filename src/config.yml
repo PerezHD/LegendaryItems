@@ -1,0 +1,9 @@
+# LegendaryItems by harry5573 configuration
+MaxEnchantLevel: 12
+WorldToDrop: Factions
+LegendaryName: '&bLegendaryItem'
+WorldRadius: 4000
+TimeBetweenSpawnsInSeconds: 14400
+MaxEnchantsOnItem: 3 
+TimeBetweenRemindMessageInSeconds: 60
+ItemCoords:
