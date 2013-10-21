@@ -16,7 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 package net.harry5573.legendary;
 
 import java.util.List;
-import static net.harry5573.legendary.ItemGenerator.plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;

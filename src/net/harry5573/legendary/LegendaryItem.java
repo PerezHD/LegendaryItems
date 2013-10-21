@@ -15,8 +15,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package net.harry5573.legendary;
 
-import java.util.List;
-import static net.harry5573.legendary.LegendaryListener.plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -33,7 +31,7 @@ public class LegendaryItem extends JavaPlugin {
     
     private String version;
     
-    public ItemGenerator ig;
+    public LegendaryItemGenerator ig;
     
     @Override
     public void onEnable() {
@@ -45,7 +43,7 @@ public class LegendaryItem extends JavaPlugin {
         
         this.saveDefaultConfig();
         
-        this.ig = new ItemGenerator(this);
+        this.ig = new LegendaryItemGenerator(this);
         
         this.getCommand("legendary").setExecutor(new LegendaryCommand(this));
         
@@ -53,7 +51,6 @@ public class LegendaryItem extends JavaPlugin {
         
         this.scheduleAutoSpawns();
         this.scheduleMessage();
-
 
         log("==[ Plugin started up ]==");
     }
@@ -124,7 +121,7 @@ public class LegendaryItem extends JavaPlugin {
                         l = new Location(Bukkit.getWorld(plugin.getConfig().getString("WorldToDrop")), x, y, z);
                     }
 
-                    Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems] " + ChatColor.GOLD + " Theres currently a legendary item spawned at " + ChatColor.GREEN + l.getBlockX() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.GOLD + "! Go get it!");
+                    Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems]" + ChatColor.GOLD + " Theres currently a legendary item spawned at " + ChatColor.GREEN + l.getBlockX() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.GOLD + "! Go get it!");
                 }
             }
         }, 60, this.getConfig().getInt("TimeBetweenRemindMessageInSeconds") * 20);
@@ -138,7 +135,7 @@ public class LegendaryItem extends JavaPlugin {
             int blockY = l.getBlockY();
             int blockZ = l.getBlockZ();
 
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems] " + ChatColor.AQUA + " Someone has blown up the chest containing the legendary item at " + ChatColor.GREEN + l.getBlockX() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.AQUA + "! Well done!");
+            Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems]" + ChatColor.AQUA + " Someone has blown up the chest containing the legendary item at " + ChatColor.GREEN + l.getBlockX() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.AQUA + "! Well done!");
             return;
         }
 
@@ -146,6 +143,6 @@ public class LegendaryItem extends JavaPlugin {
         int blockY = l.getBlockY();
         int blockZ = l.getBlockZ();
 
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems] " + ChatColor.DARK_RED + p.getName() + ChatColor.AQUA + " Has claimed the legendary item at " + ChatColor.GREEN + l.getBlockX() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.AQUA + "! Well done!");
+        Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems]" + ChatColor.DARK_RED + p.getName() + ChatColor.AQUA + " Has claimed the legendary item at " + ChatColor.GREEN + l.getBlockX() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.AQUA + "! Well done!");
     }
 }
