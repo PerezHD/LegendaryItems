@@ -81,9 +81,10 @@ public class LegendaryItem extends JavaPlugin {
         DURABILITY, PROTECTION_ENVIRONMENTAL, THORNS;
     }
 
-    //
-    //Ease of access methods
-    //
+    /**
+     * Logs a message to the logger
+     * @param msg 
+     */
     public void log(String msg) {
         this.getLogger().info(msg);
     }
@@ -121,28 +122,26 @@ public class LegendaryItem extends JavaPlugin {
                         l = new Location(Bukkit.getWorld(plugin.getConfig().getString("WorldToDrop")), x, y, z);
                     }
 
-                    Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems]" + ChatColor.GOLD + " Theres currently a legendary item spawned at " + ChatColor.GREEN + l.getBlockX() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.GOLD + "! Go get it!");
+                    Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems] " + ChatColor.GOLD + "Theres currently a legendary item spawned at " + ChatColor.GREEN + l.getBlockX() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.GOLD + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.GOLD + "! Go get it!");
                 }
             }
         }, 60, this.getConfig().getInt("TimeBetweenRemindMessageInSeconds") * 20);
     }
 
+    /**
+     * Called when a player wins a item
+     * @param p
+     * @param l 
+     */
     public void winItem(Player p, Location l) {
-
-        if (p == null) {
-
-            int blockX = l.getBlockX();
-            int blockY = l.getBlockY();
-            int blockZ = l.getBlockZ();
-
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems]" + ChatColor.AQUA + " Someone has blown up the chest containing the legendary item at " + ChatColor.GREEN + l.getBlockX() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.AQUA + "! Well done!");
-            return;
-        }
-
         int blockX = l.getBlockX();
         int blockY = l.getBlockY();
         int blockZ = l.getBlockZ();
 
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems]" + ChatColor.DARK_RED + p.getName() + ChatColor.AQUA + " Has claimed the legendary item at " + ChatColor.GREEN + l.getBlockX() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockY() + ChatColor.AQUA + ", " + ChatColor.GREEN + l.getBlockZ() + ChatColor.AQUA + "! Well done!");
+        if (p == null) {
+            Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems] " + ChatColor.AQUA + "Someone has blown up the chest containing the legendary item at " + ChatColor.GREEN + blockX + ChatColor.AQUA + ", " + ChatColor.GREEN + blockY + ChatColor.AQUA + ", " + ChatColor.GREEN + blockZ + ChatColor.AQUA + "! Well done!");
+            return;
+        }
+        Bukkit.broadcastMessage(ChatColor.YELLOW + "[LegendaryItems] " + ChatColor.DARK_RED + p.getName() + ChatColor.AQUA + " Has claimed the legendary item at " + ChatColor.GREEN + blockX + ChatColor.AQUA + ", " + ChatColor.GREEN + blockY + ChatColor.AQUA + ", " + ChatColor.GREEN + blockZ + ChatColor.AQUA + "! Well done!");
     }
 }
