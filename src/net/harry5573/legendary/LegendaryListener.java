@@ -34,8 +34,8 @@ import org.bukkit.event.world.ChunkUnloadEvent;
  * @author Harry5573
  */
 public class LegendaryListener implements Listener {
-
-    public static LegendaryItem plugin;
+    
+    LegendaryItem plugin;
     
     public LegendaryListener(LegendaryItem instance) {
         this.plugin = instance;
@@ -51,7 +51,7 @@ public class LegendaryListener implements Listener {
         }   
     }
     
-    @EventHandler(priority= EventPriority.LOW)
+    @EventHandler(priority= EventPriority.HIGH, ignoreCancelled = true)
     public void onClickChest(PlayerInteractEvent e) {
         
         if (e.getAction() == null) {
@@ -91,7 +91,7 @@ public class LegendaryListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority= EventPriority.HIGH, ignoreCancelled = true)
     public void onBreak(BlockBreakEvent e) {
 
         if (e.getBlock() == null) {
@@ -125,7 +125,7 @@ public class LegendaryListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority= EventPriority.HIGH, ignoreCancelled = true)
     public void onEntityExplode(EntityExplodeEvent e) {
         for (Block b : e.blockList()) {
             for (String str : plugin.getConfig().getStringList("ItemCoords")) {
@@ -141,7 +141,6 @@ public class LegendaryListener implements Listener {
                 Block configblock = Bukkit.getWorld(plugin.getConfig().getString("WorldToDrop")).getBlockAt(l);
 
                 for (Block newBlock : e.blockList()) {
-
                     if (configblock.toString().equals(newBlock.toString())) {
                         List<String> ex = plugin.getConfig().getStringList("ItemCoords");
                         ex.remove(str);

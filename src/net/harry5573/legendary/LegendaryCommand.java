@@ -26,7 +26,7 @@ import org.bukkit.command.CommandSender;
  */
 public class LegendaryCommand implements CommandExecutor {
 
-    public static LegendaryItem plugin;
+    LegendaryItem plugin;
     
     public LegendaryCommand(LegendaryItem instance) {
         this.plugin = instance;
